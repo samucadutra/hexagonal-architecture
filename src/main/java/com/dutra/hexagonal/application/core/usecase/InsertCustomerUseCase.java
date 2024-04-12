@@ -4,9 +4,7 @@ import com.dutra.hexagonal.application.core.domain.Customer;
 import com.dutra.hexagonal.application.ports.in.InsertCustomerInputPort;
 import com.dutra.hexagonal.application.ports.out.FindAddressByZipCodeOutputPort;
 import com.dutra.hexagonal.application.ports.out.InsertCustomerOutputPort;
-import org.springframework.stereotype.Component;
 
-@Component
 public class InsertCustomerUseCase implements InsertCustomerInputPort {
 
     private final FindAddressByZipCodeOutputPort findAddressByZipCodeOutputPort;

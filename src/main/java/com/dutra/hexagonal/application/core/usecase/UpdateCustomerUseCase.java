@@ -5,9 +5,7 @@ import com.dutra.hexagonal.application.ports.in.FindCustomerByIdInputPort;
 import com.dutra.hexagonal.application.ports.in.UpdateCustomerInputPort;
 import com.dutra.hexagonal.application.ports.out.FindAddressByZipCodeOutputPort;
 import com.dutra.hexagonal.application.ports.out.UpdateCustomerOutputPort;
-import org.springframework.stereotype.Component;
 
-@Component
 public class UpdateCustomerUseCase implements UpdateCustomerInputPort {
 
     private final FindCustomerByIdInputPort findCustomerByIdInputPort;
