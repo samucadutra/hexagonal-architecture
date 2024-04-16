@@ -3,6 +3,7 @@ package com.dutra.hexagonal.adapters.in.controller;
 import com.dutra.hexagonal.adapters.in.controller.mapper.CustomerMapper;
 import com.dutra.hexagonal.adapters.in.controller.request.CustomerRequest;
 import com.dutra.hexagonal.adapters.in.controller.response.CustomerResponse;
+import com.dutra.hexagonal.application.ports.in.DeleteCustomerByIdInputPort;
 import com.dutra.hexagonal.application.ports.in.FindCustomerByIdInputPort;
 import com.dutra.hexagonal.application.ports.in.InsertCustomerInputPort;
 import com.dutra.hexagonal.application.ports.in.UpdateCustomerInputPort;
@@ -27,6 +28,9 @@ public class CostumerController {
     @Autowired
     private CustomerMapper customerMapper;
 
+    @Autowired
+    private DeleteCustomerByIdInputPort deleteCustomerByIdInputPort;
+
     @PostMapping
     public ResponseEntity<Void> insert(@Valid @RequestBody CustomerRequest customerRequest) {
 
@@ -47,6 +51,12 @@ public class CostumerController {
         var customer = customerMapper.toCustomer(customerRequest);
         customer.setId(id);
         updateCustomerInputPort.update(customer, customerRequest.getZipCode());
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable final String id) {
+        deleteCustomerByIdInputPort.delete(id);
         return ResponseEntity.noContent().build();
     }
 }
